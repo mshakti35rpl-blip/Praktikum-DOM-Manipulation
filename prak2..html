@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+    font-family: Arial;
+    text-align: center;
+    background-color: lightblue;
+}
+
+.container {
+    background-color: white;
+    width: 300px;
+    margin: 100px auto;
+    padding: 30px;
+    border-radius: 10px;
+}
+
+h2 {
+    font-size: 50px;
+    color: green;
+}
+
+button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Penghitung Angka</h1>
+
+        <h2 id="angka">0</h2>
+
+        <button id="kurang">-</button>
+        <button id="reset">Reset</button>
+        <button id="tambah">+</button>
+    </div>
+
+    <script>
+        let nilai = 0;
+
+const angka = document.getElementById("angka");
+const tambah = document.getElementById("tambah");
+const kurang = document.getElementById("kurang");
+const reset = document.getElementById("reset");
+
+kurang.addEventListener("click", function() {
+    nilai--;
+    updateAngka();
+});
+
+function updateAngka() {
+    angka.textContent = nilai;
+
+    if (nilai > 0) {
+        angka.style.color = "green";
+    } else if (nilai < 0) {
+        angka.style.color = "red";
+    } else {
+        angka.style.color = "black";
+    }
+}
+
+tambah.addEventListener("click", function() {
+    nilai++;
+    updateAngka();
+});
+
+kurang.addEventListener("click", function() {
+    if (nilai > 0) {
+        nilai--;
+        updateAngka();
+    }
+});
+
+reset.addEventListener("click", function() {
+    nilai = 0;
+    updateAngka();
+});
+    </script>
+    
+</body>
+</html>

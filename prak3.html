@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang='id'>
+<head>
+    <meta charset='UTF-8'>
+    <title>Daftar Belanja</title>
+    <style>
+        body { font-family: Arial; max-width: 400px; margin: 40px auto; }
+        li { margin: 8px 0; }
+        li button { margin-left: 10px; }
+    </style>
+</head>
+<body>
+    <h2>Daftar Belanja</h2>
+    <input type='text' id='barang' placeholder='Nama barang'>
+    <button id='btnTambah'>Tambah</button>
+    <ul id='daftar'></ul>
+
+    <script>
+        const barang = document.getElementById('barang');
+        const btnTambah = document.getElementById('btnTambah');
+        const daftar = document.getElementById('daftar');
+
+        function tambahBarang() {
+            if (barang.value === '') {
+                alert('Isi nama barang dulu ya!');
+                return;
+            }
+
+            const nama = barang.value;
+            let jumlah = 1;
+
+            const li = document.createElement('li');
+
+            const teksBarang = document.createElement('span');
+            teksBarang.textContent = `${nama} - Jumlah Barang: ${jumlah}`;
+
+            const btnTambahBarang = document.createElement('button');
+            btnTambahBarang.textContent = '+';
+            btnTambahBarang.addEventListener('click', () => {
+                jumlah++;
+                teksBarang.textContent = `${nama} - Jumlah Barang: ${jumlah}`;
+            });
+
+            const btnHapus = document.createElement('button');
+            btnHapus.textContent = 'Hapus';
+            btnHapus.addEventListener('click', () => {
+                li.remove();
+            });
+
+            li.append(teksBarang, btnTambahBarang, btnHapus);
+            daftar.appendChild(li);
+
+            barang.value = '';
+            barang.focus();
+        }
+
+   
+        btnTambah.addEventListener('click', tambahBarang);
+
+        barang.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') {
+                tambahBarang();
+            }
+        });
+    </script>
+</body>
+</html>
